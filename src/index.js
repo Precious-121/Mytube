@@ -10,7 +10,7 @@ import { app } from "./app.js";
 connectDB().then(
     () => {
         app.listen(process.env.PORT || 8000 , () => {
-            console.log("src/index.js is correctly importing and working with database\napp.js is also working fine");
+            console.log("src/index.js is correctly importing and working with database");
         });
     }
 ).catch(
