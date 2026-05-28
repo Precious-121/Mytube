@@ -1,4 +1,3 @@
-import express from "express"
 import { connectDB } from "./db/index.js" // you dont need to define this explicitly cause node already look for index.js
 import dotenv from "dotenv"
 

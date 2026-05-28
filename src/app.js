@@ -6,6 +6,7 @@ import { userRouter } from "./routes/user.route.js"
 
 const app = express()
 
+//allowing to get data 
 app.use(cors())
 
 

@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { registerUser } from "../controllers/user.controller.js";
+import { loginUser, registerUser , logoutUser, refreshAccessToken } from "../controllers/user.controller.js";
 import {upload} from "../middlewares/multer.middleware.js"
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
@@ -22,5 +23,15 @@ userRouter.route("/register").post(
 
     registerUser
 );
+
+userRouter.route("/login").post(loginUser);
+
+//secured routes --> needs authorisation before working 
+//you will need verifyJWT in post before it would make sure you first verifyJWT and then logout the user --> thats why we used 
+//you can define any number of middlewares before running the logoutUser thing i guess 
+userRouter.route("/logout").post(verifyJWT,logoutUser);
+userRouter.route("/refresh").post(refreshAccessToken); //since i had already verified if this refresh token is valid or not we dont need to pass verifyJWT here
+//it will automatically new JWT tokens 
+
 
 export {userRouter};    
